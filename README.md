@@ -17,8 +17,7 @@ NSS evaluates infrastructure across six dimensions:
 
 Active development. Initial release targeted Q2 2027.
 
-This library is being extracted from the Nexus Suite (bayatatech.com), where the scoring engine
-has been running in production since August 2026.
+This library is being extracted from the Nexus Suite (bayatatech.com), where the scoring engine has been running in production since August 2026.
 
 ## Licence
 
