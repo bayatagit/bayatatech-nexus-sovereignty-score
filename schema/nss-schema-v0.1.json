@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/bayatagit/bayatatech-nexus-sovereignty-score/schema/nss-schema-v0.1.json",
+  "title": "Nexus Sovereignty Score Schema",
+  "version": "0.1.0-draft",
+  "description": "Open schema for measuring digital sovereignty across infrastructure stacks",
+  "dimensions": {
+    "data_residency": {
+      "weight": 0.20,
+      "description": "Physical and legal location of data storage and processing"
+    },
+    "vendor_independence": {
+      "weight": 0.20,
+      "description": "Replaceability of critical service dependencies"
+    },
+    "dns_network_integrity": {
+      "weight": 0.15,
+      "description": "DNS resolution and network traffic sovereignty"
+    },
+    "key_management": {
+      "weight": 0.20,
+      "description": "Cryptographic key storage and lifecycle management"
+    },
+    "ai_inference": {
+      "weight": 0.10,
+      "description": "Sovereignty of AI inference and model execution"
+    },
+    "regulatory_mapping": {
+      "weight": 0.15,
+      "description": "Compliance posture against DSGVO, NIS2 and EU AI Act"
+    }
+  },
+  "output": {
+    "composite_score": "0-100",
+    "format": ["json", "json-ld"],
+    "schema_version": "0.1.0-draft"
+  }
+}
