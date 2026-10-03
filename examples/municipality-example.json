@@ -1,0 +1,57 @@
+{
+  "nss_version": "0.1",
+  "organisation": {
+    "name": "Stadt Musterstadt",
+    "type": "municipality",
+    "country": "DE"
+  },
+  "assessment_date": "2026-03-15",
+  "dimensions": {
+    "data_residency": {
+      "answers": {
+        "DR1": "eu_eea",
+        "DR2": "eu_subsidiary_of_non_eu_parent",
+        "DR3": "partly_outside"
+      }
+    },
+    "vendor_independence": {
+      "answers": {
+        "VI1": "partial",
+        "VI2": "with_significant_effort",
+        "VI3": "partial",
+        "VI4": 0.6
+      }
+    },
+    "dns_network_integrity": {
+      "answers": {
+        "DN1": "eu_operator",
+        "DN2": "no",
+        "DN3": "limited",
+        "DN4": "partial"
+      }
+    },
+    "key_management": {
+      "answers": {
+        "KM1": "provider_with_customer_control",
+        "KM2": "both",
+        "KM3": "documented",
+        "KM4": "under_conditions"
+      }
+    },
+    "ai_inference": {
+      "answers": {
+        "AI1": "eu_region_non_eu_operator",
+        "AI2": "opt_out",
+        "AI3": "partial"
+      }
+    },
+    "regulatory_mapping": {
+      "answers": {
+        "RM1": "some",
+        "RM2": "partial",
+        "RM3": "not_in_scope",
+        "RM4": "partial"
+      }
+    }
+  }
+}

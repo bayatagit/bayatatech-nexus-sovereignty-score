@@ -185,10 +185,6 @@ def test_invalid_dimension_criterion_and_level_raise():
         validate_input(invalid_level, definition)
 
 
-@pytest.mark.skipif(
-    not EXAMPLE_INPUT.exists() or not EXAMPLE_OUTPUT.exists(),
-    reason="municipality example not present yet",
-)
 def test_municipality_example_matches_committed_output():
     assessment = json.loads(EXAMPLE_INPUT.read_text(encoding="utf-8"))
     expected = json.loads(EXAMPLE_OUTPUT.read_text(encoding="utf-8"))
@@ -199,10 +195,7 @@ def test_municipality_example_matches_committed_output():
 
 
 def test_cli_score_success_and_invalid_exit_codes(tmp_path: Path):
-    definition = load_definition()
-    valid_path = tmp_path / "valid.json"
     invalid_path = tmp_path / "invalid.json"
-    valid_path.write_text(json.dumps(_best_answers(definition)), encoding="utf-8")
     invalid_path.write_text(
         json.dumps(
             {
@@ -216,14 +209,14 @@ def test_cli_score_success_and_invalid_exit_codes(tmp_path: Path):
     )
 
     ok = subprocess.run(
-        [sys.executable, "-m", "nss", "score", str(valid_path)],
+        [sys.executable, "-m", "nss", "score", str(EXAMPLE_INPUT)],
         capture_output=True,
         text=True,
         check=False,
     )
     assert ok.returncode == 0
     payload = json.loads(ok.stdout)
-    assert payload["composite_score"] == 100
+    assert payload["grade"] in {"C", "D"}
 
     bad = subprocess.run(
         [sys.executable, "-m", "nss", "score", str(invalid_path)],

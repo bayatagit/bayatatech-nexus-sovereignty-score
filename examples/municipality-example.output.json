@@ -1,0 +1,232 @@
+{
+  "scoring_version": "0.1.0-draft",
+  "composite_score": 51,
+  "grade": "C",
+  "dimensions": {
+    "data_residency": {
+      "score": 63.5,
+      "applied_weight": 0.2,
+      "capped": false,
+      "not_applicable": false,
+      "criteria": {
+        "DR1": {
+          "score": 100.0,
+          "applied_weight": 0.35,
+          "not_applicable": false,
+          "answer": "eu_eea"
+        },
+        "DR2": {
+          "score": 40.0,
+          "applied_weight": 0.4,
+          "not_applicable": false,
+          "answer": "eu_subsidiary_of_non_eu_parent"
+        },
+        "DR3": {
+          "score": 50.0,
+          "applied_weight": 0.25,
+          "not_applicable": false,
+          "answer": "partly_outside"
+        }
+      }
+    },
+    "vendor_independence": {
+      "score": 48.0,
+      "applied_weight": 0.2,
+      "capped": false,
+      "not_applicable": false,
+      "criteria": {
+        "VI1": {
+          "score": 50.0,
+          "applied_weight": 0.3,
+          "not_applicable": false,
+          "answer": "partial"
+        },
+        "VI2": {
+          "score": 50.0,
+          "applied_weight": 0.3,
+          "not_applicable": false,
+          "answer": "with_significant_effort"
+        },
+        "VI3": {
+          "score": 50.0,
+          "applied_weight": 0.2,
+          "not_applicable": false,
+          "answer": "partial"
+        },
+        "VI4": {
+          "score": 40.0,
+          "applied_weight": 0.2,
+          "not_applicable": false,
+          "answer": 0.6
+        }
+      }
+    },
+    "dns_network_integrity": {
+      "score": 50.5,
+      "applied_weight": 0.15,
+      "capped": false,
+      "not_applicable": false,
+      "criteria": {
+        "DN1": {
+          "score": 80.0,
+          "applied_weight": 0.35,
+          "not_applicable": false,
+          "answer": "eu_operator"
+        },
+        "DN2": {
+          "score": 0.0,
+          "applied_weight": 0.2,
+          "not_applicable": false,
+          "answer": "no"
+        },
+        "DN3": {
+          "score": 50.0,
+          "applied_weight": 0.3,
+          "not_applicable": false,
+          "answer": "limited"
+        },
+        "DN4": {
+          "score": 50.0,
+          "applied_weight": 0.15,
+          "not_applicable": false,
+          "answer": "partial"
+        }
+      }
+    },
+    "key_management": {
+      "score": 47.0,
+      "applied_weight": 0.2,
+      "capped": false,
+      "not_applicable": false,
+      "criteria": {
+        "KM1": {
+          "score": 30.0,
+          "applied_weight": 0.4,
+          "not_applicable": false,
+          "answer": "provider_with_customer_control"
+        },
+        "KM2": {
+          "score": 100.0,
+          "applied_weight": 0.2,
+          "not_applicable": false,
+          "answer": "both"
+        },
+        "KM3": {
+          "score": 50.0,
+          "applied_weight": 0.15,
+          "not_applicable": false,
+          "answer": "documented"
+        },
+        "KM4": {
+          "score": 30.0,
+          "applied_weight": 0.25,
+          "not_applicable": false,
+          "answer": "under_conditions"
+        }
+      }
+    },
+    "ai_inference": {
+      "score": 37.5,
+      "applied_weight": 0.1,
+      "capped": false,
+      "not_applicable": false,
+      "criteria": {
+        "AI1": {
+          "score": 30.0,
+          "applied_weight": 0.45,
+          "not_applicable": false,
+          "answer": "eu_region_non_eu_operator"
+        },
+        "AI2": {
+          "score": 40.0,
+          "applied_weight": 0.35,
+          "not_applicable": false,
+          "answer": "opt_out"
+        },
+        "AI3": {
+          "score": 50.0,
+          "applied_weight": 0.2,
+          "not_applicable": false,
+          "answer": "partial"
+        }
+      }
+    },
+    "regulatory_mapping": {
+      "score": 50.0,
+      "applied_weight": 0.15,
+      "capped": false,
+      "not_applicable": false,
+      "criteria": {
+        "RM3": {
+          "score": null,
+          "applied_weight": 0.0,
+          "not_applicable": true,
+          "answer": "not_in_scope"
+        },
+        "RM1": {
+          "score": 50.0,
+          "applied_weight": 0.39999999999999997,
+          "not_applicable": false,
+          "answer": "some"
+        },
+        "RM2": {
+          "score": 50.0,
+          "applied_weight": 0.3333333333333333,
+          "not_applicable": false,
+          "answer": "partial"
+        },
+        "RM4": {
+          "score": 50.0,
+          "applied_weight": 0.26666666666666666,
+          "not_applicable": false,
+          "answer": "partial"
+        }
+      }
+    }
+  },
+  "findings": [
+    {
+      "dimension": "data_residency",
+      "criterion": "DR2",
+      "score": 40.0,
+      "message": "Operator legal jurisdiction scored 40.0, below threshold 50"
+    },
+    {
+      "dimension": "vendor_independence",
+      "criterion": "VI4",
+      "score": 40.0,
+      "message": "Single-vendor concentration scored 40.0, below threshold 50"
+    },
+    {
+      "dimension": "dns_network_integrity",
+      "criterion": "DN2",
+      "score": 0.0,
+      "message": "Encrypted DNS scored 0.0, below threshold 50"
+    },
+    {
+      "dimension": "key_management",
+      "criterion": "KM1",
+      "score": 30.0,
+      "message": "Encryption key custody scored 30.0, below threshold 50"
+    },
+    {
+      "dimension": "key_management",
+      "criterion": "KM4",
+      "score": 30.0,
+      "message": "Provider access to plaintext scored 30.0, below threshold 50"
+    },
+    {
+      "dimension": "ai_inference",
+      "criterion": "AI1",
+      "score": 30.0,
+      "message": "Inference location scored 30.0, below threshold 50"
+    },
+    {
+      "dimension": "ai_inference",
+      "criterion": "AI2",
+      "score": 40.0,
+      "message": "Prompt and output retention for training scored 40.0, below threshold 50"
+    }
+  ],
+  "generated_at": "2026-03-15T12:00:00Z"
+}
