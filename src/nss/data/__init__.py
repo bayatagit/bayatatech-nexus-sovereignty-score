@@ -1,0 +1,1 @@
+"""Bundled scoring definition data."""

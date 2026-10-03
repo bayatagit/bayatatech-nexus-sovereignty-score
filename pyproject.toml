@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nexus-sovereignty-score"
+version = "0.1.0.dev0"
+description = "Open scoring library for measuring digital sovereignty"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Atakan Bayritug", email = "atakan@bayatatech.com" }]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+nss = "nss.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+nss = ["data/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
