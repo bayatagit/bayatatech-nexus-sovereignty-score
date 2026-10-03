@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/bayatagit/bayatatech-nexus-sovereignty-score/main/schema/nss-output.schema.json",
+  "title": "Nexus Sovereignty Score assessment result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scoring_version",
+    "composite_score",
+    "grade",
+    "dimensions",
+    "findings",
+    "generated_at"
+  ],
+  "properties": {
+    "scoring_version": {
+      "type": "string"
+    },
+    "composite_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "grade": {
+      "type": "string",
+      "enum": ["A", "B", "C", "D", "E"]
+    },
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "data_residency": {"$ref": "#/$defs/dimensionResult"},
+        "vendor_independence": {"$ref": "#/$defs/dimensionResult"},
+        "dns_network_integrity": {"$ref": "#/$defs/dimensionResult"},
+        "key_management": {"$ref": "#/$defs/dimensionResult"},
+        "ai_inference": {"$ref": "#/$defs/dimensionResult"},
+        "regulatory_mapping": {"$ref": "#/$defs/dimensionResult"}
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/finding"}
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "dimensionResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["score", "applied_weight", "capped", "criteria"],
+      "properties": {
+        "score": {
+          "type": ["number", "null"]
+        },
+        "applied_weight": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "capped": {
+          "type": "boolean"
+        },
+        "not_applicable": {
+          "type": "boolean"
+        },
+        "criteria": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["score", "applied_weight"],
+            "properties": {
+              "score": {"type": ["number", "null"]},
+              "applied_weight": {"type": "number"},
+              "not_applicable": {"type": "boolean"},
+              "answer": {
+                "oneOf": [
+                  {"type": "string"},
+                  {"type": "number"},
+                  {"type": "null"}
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dimension", "criterion", "score", "message"],
+      "properties": {
+        "dimension": {"type": "string"},
+        "criterion": {"type": "string"},
+        "score": {"type": "number"},
+        "message": {"type": "string"}
+      }
+    }
+  }
+}

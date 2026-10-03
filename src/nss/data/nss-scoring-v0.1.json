@@ -1,0 +1,326 @@
+{
+  "id": "nss-scoring",
+  "version": "0.1.0-draft",
+  "title": "Nexus Sovereignty Score",
+  "description": "Scoring definition for measuring digital sovereignty across infrastructure stacks",
+  "dimensions": {
+    "data_residency": {
+      "weight": 0.20,
+      "description": "Physical and legal location of data storage, processing and operator jurisdiction",
+      "criteria": [
+        {
+          "id": "DR1",
+          "title": "Primary data storage location",
+          "question": "Where is primary operational data stored?",
+          "weight": 0.35,
+          "critical": true,
+          "levels": {
+            "eu_eea": 100,
+            "adequacy_country": 60,
+            "other": 0
+          }
+        },
+        {
+          "id": "DR2",
+          "title": "Operator legal jurisdiction",
+          "question": "Under which legal jurisdiction is the operator of the primary service organised?",
+          "weight": 0.40,
+          "critical": true,
+          "levels": {
+            "eu_entity": 100,
+            "eu_subsidiary_of_non_eu_parent": 40,
+            "non_eu_entity": 0
+          }
+        },
+        {
+          "id": "DR3",
+          "title": "Backups, replicas and support access",
+          "question": "Where are backups, replicas and privileged support access located?",
+          "weight": 0.25,
+          "critical": false,
+          "levels": {
+            "all_eu": 100,
+            "partly_outside": 50,
+            "outside": 0
+          }
+        }
+      ]
+    },
+    "vendor_independence": {
+      "weight": 0.20,
+      "description": "Replaceability of critical service dependencies and contractual exit readiness",
+      "criteria": [
+        {
+          "id": "VI1",
+          "title": "Data export in open formats",
+          "question": "Can data be exported in open, documented formats?",
+          "weight": 0.30,
+          "critical": false,
+          "levels": {
+            "full": 100,
+            "partial": 50,
+            "none": 0
+          }
+        },
+        {
+          "id": "VI2",
+          "title": "Self-hostable or replaceable",
+          "question": "Can the service be self-hosted or replaced by another provider?",
+          "weight": 0.30,
+          "critical": false,
+          "levels": {
+            "yes": 100,
+            "with_significant_effort": 50,
+            "no": 0
+          }
+        },
+        {
+          "id": "VI3",
+          "title": "Contractual exit terms",
+          "question": "Are termination, data return and deletion terms documented?",
+          "weight": 0.20,
+          "critical": false,
+          "levels": {
+            "documented": 100,
+            "partial": 50,
+            "none": 0
+          }
+        },
+        {
+          "id": "VI4",
+          "title": "Single-vendor concentration",
+          "question": "What share of critical services is concentrated with the same single vendor? (0.0 to 1.0)",
+          "weight": 0.20,
+          "critical": false,
+          "answer_type": "number",
+          "min": 0.0,
+          "max": 1.0
+        }
+      ]
+    },
+    "dns_network_integrity": {
+      "weight": 0.15,
+      "description": "DNS resolution sovereignty and control of outbound network traffic",
+      "criteria": [
+        {
+          "id": "DN1",
+          "title": "DNS resolver operator",
+          "question": "Who operates the DNS resolvers used by the organisation?",
+          "weight": 0.35,
+          "critical": true,
+          "levels": {
+            "self_operated": 100,
+            "eu_operator": 80,
+            "non_eu_public_resolver": 0
+          }
+        },
+        {
+          "id": "DN2",
+          "title": "Encrypted DNS",
+          "question": "Is encrypted DNS in use for client and server resolution?",
+          "weight": 0.20,
+          "critical": false,
+          "levels": {
+            "yes": 100,
+            "no": 0
+          }
+        },
+        {
+          "id": "DN3",
+          "title": "Outbound telemetry to non-EU endpoints",
+          "question": "How much outbound telemetry is sent to non-EU endpoints?",
+          "weight": 0.30,
+          "critical": false,
+          "levels": {
+            "none": 100,
+            "limited": 50,
+            "extensive": 0
+          }
+        },
+        {
+          "id": "DN4",
+          "title": "Documented egress control",
+          "question": "Is outbound egress control documented and enforced?",
+          "weight": 0.15,
+          "critical": false,
+          "levels": {
+            "yes": 100,
+            "partial": 50,
+            "no": 0
+          }
+        }
+      ]
+    },
+    "key_management": {
+      "weight": 0.20,
+      "description": "Cryptographic key custody, encryption coverage and provider access to plaintext",
+      "criteria": [
+        {
+          "id": "KM1",
+          "title": "Encryption key custody",
+          "question": "Who holds the encryption keys for primary data?",
+          "weight": 0.40,
+          "critical": true,
+          "levels": {
+            "customer_hardware_module": 100,
+            "customer_software": 70,
+            "provider_with_customer_control": 30,
+            "provider": 0
+          }
+        },
+        {
+          "id": "KM2",
+          "title": "Encryption at rest and in transit",
+          "question": "Is encryption applied at rest and in transit?",
+          "weight": 0.20,
+          "critical": false,
+          "levels": {
+            "both": 100,
+            "one": 50,
+            "none": 0
+          }
+        },
+        {
+          "id": "KM3",
+          "title": "Key rotation and revocation",
+          "question": "Are key rotation and revocation documented and tested?",
+          "weight": 0.15,
+          "critical": false,
+          "levels": {
+            "documented_and_tested": 100,
+            "documented": 50,
+            "none": 0
+          }
+        },
+        {
+          "id": "KM4",
+          "title": "Provider access to plaintext",
+          "question": "Is the provider technically able to access plaintext?",
+          "weight": 0.25,
+          "critical": false,
+          "levels": {
+            "no": 100,
+            "under_conditions": 30,
+            "yes": 0
+          }
+        }
+      ]
+    },
+    "ai_inference": {
+      "weight": 0.10,
+      "description": "Location and control of AI inference, retention and auditability",
+      "criteria": [
+        {
+          "id": "AI1",
+          "title": "Inference location",
+          "question": "Where does AI inference run?",
+          "weight": 0.45,
+          "critical": true,
+          "levels": {
+            "on_premise": 100,
+            "eu_operator": 70,
+            "eu_region_non_eu_operator": 30,
+            "non_eu": 0
+          }
+        },
+        {
+          "id": "AI2",
+          "title": "Prompt and output retention for training",
+          "question": "Are prompts or outputs retained or used for training by the provider?",
+          "weight": 0.35,
+          "critical": false,
+          "levels": {
+            "no": 100,
+            "opt_out": 40,
+            "yes": 0
+          }
+        },
+        {
+          "id": "AI3",
+          "title": "Inference audit logging",
+          "question": "Are inference events covered by audit logging?",
+          "weight": 0.20,
+          "critical": false,
+          "levels": {
+            "yes": 100,
+            "partial": 50,
+            "no": 0
+          }
+        }
+      ]
+    },
+    "regulatory_mapping": {
+      "weight": 0.15,
+      "description": "Documented mapping to GDPR, NIS2 and EU AI Act obligations where applicable",
+      "criteria": [
+        {
+          "id": "RM1",
+          "title": "Legal basis for transfers outside the EU/EEA",
+          "question": "Is a legal basis documented for every transfer outside the EU/EEA?",
+          "weight": 0.30,
+          "critical": false,
+          "levels": {
+            "all": 100,
+            "some": 50,
+            "none": 0,
+            "no_transfers": 100
+          }
+        },
+        {
+          "id": "RM2",
+          "title": "Records of processing and processor agreements",
+          "question": "Are records of processing and processor agreements in place?",
+          "weight": 0.25,
+          "critical": false,
+          "levels": {
+            "complete": 100,
+            "partial": 50,
+            "missing": 0
+          }
+        },
+        {
+          "id": "RM3",
+          "title": "NIS2 risk management measures",
+          "question": "If the organisation is in scope of NIS2, are risk management measures in place?",
+          "weight": 0.25,
+          "critical": false,
+          "levels": {
+            "in_place": 100,
+            "partial": 50,
+            "missing": 0,
+            "not_in_scope": null
+          }
+        },
+        {
+          "id": "RM4",
+          "title": "EU AI Act risk classification",
+          "question": "Has EU AI Act risk classification been done for each AI system?",
+          "weight": 0.20,
+          "critical": false,
+          "levels": {
+            "done": 100,
+            "partial": 50,
+            "not_done": 0,
+            "no_ai_systems": null
+          }
+        }
+      ]
+    }
+  },
+  "rules": {
+    "critical_cap": 40,
+    "not_applicable": "A dimension or criterion marked not applicable is excluded and its weight is redistributed proportionally across the remaining ones. Criteria with a null level are treated as not applicable.",
+    "rounding": {
+      "dimension": 1,
+      "composite": 0
+    },
+    "grades": {
+      "A": {"min": 85, "max": 100, "label": "high sovereignty"},
+      "B": {"min": 70, "max": 84, "label": "substantial sovereignty"},
+      "C": {"min": 50, "max": 69, "label": "moderate sovereignty"},
+      "D": {"min": 30, "max": 49, "label": "limited sovereignty"},
+      "E": {"min": 0, "max": 29, "label": "low sovereignty"}
+    },
+    "finding_threshold": 50
+  }
+}

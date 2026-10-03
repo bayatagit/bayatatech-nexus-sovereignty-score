@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/bayatagit/bayatatech-nexus-sovereignty-score/main/schema/nss-input.schema.json",
+  "title": "Nexus Sovereignty Score assessment input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["nss_version", "organisation", "assessment_date", "dimensions"],
+  "properties": {
+    "nss_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "organisation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "type", "country"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "type": {"type": "string", "minLength": 1},
+        "country": {"type": "string", "minLength": 2}
+      }
+    },
+    "assessment_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "data_residency": {"$ref": "#/$defs/dimensionAssessment"},
+        "vendor_independence": {"$ref": "#/$defs/dimensionAssessment"},
+        "dns_network_integrity": {"$ref": "#/$defs/dimensionAssessment"},
+        "key_management": {"$ref": "#/$defs/dimensionAssessment"},
+        "ai_inference": {"$ref": "#/$defs/dimensionAssessment"},
+        "regulatory_mapping": {"$ref": "#/$defs/dimensionAssessment"}
+      }
+    }
+  },
+  "$defs": {
+    "dimensionAssessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "not_applicable": {"type": "boolean"},
+        "answers": {
+          "type": "object",
+          "additionalProperties": {
+            "oneOf": [
+              {"type": "string"},
+              {"type": "number"}
+            ]
+          }
+        }
+      }
+    }
+  }
+}
